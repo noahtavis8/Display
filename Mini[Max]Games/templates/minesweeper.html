@@ -1,0 +1,124 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Minesweeper
+{% endblock %}
+
+{% block game %}
+
+    <!-- Back and how to play buttons -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">
+            ← Back
+        </a>
+
+        <a href="/how_to_play" class="game-bar-item">
+            How to Play
+        </a>
+    </div>
+
+    <!-- Handle button logic -->
+    <script>
+        function setControlAction(value) {
+            document.getElementById("controls-action-input").value = value;
+        }
+
+        function handleLeftClick(value) {
+            document.getElementById("action-input").value = value;
+            document.getElementById("minesweeper-form").submit();
+        }
+
+        function handleRightClick(event, value) {
+            event.preventDefault();
+            document.getElementById("action-input").value = value;
+            document.getElementById("minesweeper-form").submit();
+        }
+    </script>
+
+    <!-- Flags left block -->
+    <p class="ms-message">
+        <img src="/static/images/flag.png" alt="Flag" class="ms-icon-small">
+        {{ flags_left }}
+    </p>
+
+    <!-- Minesweeper board -->
+    <div class="ms-container">
+        <form method="post" id="minesweeper-form" class="ms-board {{ difficulty }}">
+            <input type="hidden" name="action" id="action-input">
+            <table>
+                {% for i in range(board.height) %}
+                    <tr>
+                        {% for j in range(board.width) %}
+
+                            {% set cell = (i, j) %}
+
+                            <!-- Button style formatting -->
+                            <td class="ms-button 
+                            {% if (i + j) % 2 == 0 %}light{% endif %}
+                            {% if i == 0 and j == 0 %} top-left
+                            {% elif i == board.height - 1 and j == board.width - 1 %} bottom-right
+                            {% elif i == 0 and j == board.width - 1 %} top-right
+                            {% elif i == board.height - 1 and j == 0 %} bottom-left
+                            {% endif %}
+                            {% if cell in revealed %} revealed{% endif %}">
+
+                            <!-- Display the cell content based on its state -->
+
+                                <!-- Nearby mines if cell is revealed and not a mine -->
+                                {% if cell in revealed %}
+                                    {{ board.nearby_mines(cell) }}
+
+                                <!-- Mine -->
+                                {% elif lost and board.is_mine(cell) %}
+                                    <img src="/static/images/minesweeper.png" alt="Mine" class="ms-icon">
+
+                                <!-- Flagged button -->
+                                {% elif cell in flags %}
+                                    <button 
+                                        type="button"
+                                        onclick="handleLeftClick('flag-{{ i }},{{ j }}')"
+                                        class="cursor-pointer"
+                                        title="Click to remove flag">
+                                        <img src="/static/images/flag.png" alt="Flag" class="ms-icon">
+                                    </button>
+
+                                <!-- Invisible button (to select space)-->
+                                {% else %}
+                                    <button 
+                                        type="button"
+                                        oncontextmenu="handleRightClick(event, 'flag-{{ i }},{{ j }}')"
+                                        onclick="handleLeftClick('reveal-{{ i }},{{ j }}')">
+                                    </button>
+                                {% endif %}
+                            </td>
+
+                        {% endfor %}
+
+                    </tr>
+                {% endfor %}
+            </table>
+
+        </form>
+    </div>
+
+    <!-- Play again button -->
+    <main class="game-grid">
+        <form style="margin-top: 18px;" id="controls-form" method="post">
+            <input type="hidden" name="action" id="controls-action-input">
+            <button type="submit" class="game-card" onclick="setControlAction('ai_move')">
+                <p>AI Move</p>
+            </button>
+            <button type="submit" class="game-card" onclick="setControlAction('reset')">
+                <p>Reset</p>
+            </button>
+        </form>
+    </main>
+
+    <!-- Win / Lose message -->
+    {% if session.get("won") %}
+        <p class="ms-message">You won!</p>
+    {% elif lost %}
+        <p class="ms-message">You lost!</p>
+    {% endif %}
+
+{% endblock %}

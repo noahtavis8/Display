@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    X or O?
+{% endblock %}
+
+{% block main %}
+    <!-- Ask the user whether they want to play X or O -->
+    <main class="game-grid">
+        <form action="{{ url_for('playing_as_xo.playing_as_xo') }}" method="POST">
+            <input type="hidden" name="playing_as" value="x"> 
+            <button type="submit" class="game-card">
+                <img src="/static/images/x.png" alt="X">
+                <p>Play as X</p>
+            </button>
+        </form>
+
+        <form action="{{ url_for('playing_as_xo.playing_as_xo') }}" method="POST">
+            <input type="hidden" name="playing_as" value="o">
+            <button type="submit" class="game-card">
+                <img src="/static/images/o.png" alt="O">
+                <p>Play as O</p>
+            </button>
+        </form>
+    </main>
+{% endblock %}

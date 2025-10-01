@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Video-Card
+{% endblock %}
+
+{% block about %}
+    <!-- Back button -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">← Back</a>
+    </div>
+
+    <!-- Wideo Card Page -->
+    <div class="ttt-row" style="gap: 15px; margin-top: 20px;">
+        <div class="ttt-6">
+            <p>Title: </p>
+        </div>
+        <div class="ttt-6">
+            <img src="/static/images/minimax-games-logo.png" 
+                alt="Mini[Max] Games"  style="height: 60px; width: auto;">
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>Name: Noah Tavis</p>
+            <p>GitHub and edX usernames: noahtavis8</p>
+            <p>City: Blaine, WA</p>
+            <p>Country: United States</p>
+            <p>Date: August 6, 2025</p>
+        </div>
+  
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Friend or AI?
+{% endblock %}
+
+{% block main %}
+    <!-- Ask the user whether they want to play an AI or a friend -->
+    <main class="game-grid">
+        <form action="{{ url_for('ask_ai.ask_ai') }}" method="POST">
+            <input type="hidden" name="playing_ai" value="true"> 
+            <button type="submit" class="game-card">
+                <img src="/static/images/robot.png" alt="Computer">
+                <p>Play a computer</p>
+            </button>
+        </form>
+
+        <form action="{{ url_for('ask_ai.ask_ai') }}" method="POST">
+            <input type="hidden" name="playing_ai" value="false">
+            <button type="submit" class="game-card">
+                <img src="/static/images/people.png" alt="Friend">
+                <p>Play a friend</p>
+            </button>
+        </form>
+    </main>
+{% endblock %}

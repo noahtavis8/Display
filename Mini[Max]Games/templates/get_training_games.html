@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    # Training Games?
+{% endblock %}
+
+{% block main %}
+    <!-- Ask the user how many games they want to train the AI with -->
+    <form method="POST" action="{{ url_for('get_training_games.get_training_games') }}" 
+    class="training-game-grid">
+        <label for="training-games" class="training-game-card">
+            How many games would you like the AI to train on?</label>
+        <p class="disclaimer">
+            (Numbers less than 0, greater than 10,000, and non-integer input will default to 1000)</p>
+        <input
+            type="number"
+            id="training-games"
+            name="training_games"
+            min="0"
+            max="10000"
+            value="1000"
+            required
+        >
+        <button type="submit" class="training-game-card">Train AI</button>
+    </form>
+{% endblock %}

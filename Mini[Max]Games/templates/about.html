@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+{% block about %}
+    <!-- Back button -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">← Back</a>
+    </div>
+
+    <!-- About page -->
+    <div class="ttt-row" style="gap: 15px; margin-top: 20px;">
+        <div class="ttt-6">
+            <p>Welcome, one and all, to</p>
+        </div>
+        <div class="ttt-6">
+            <img src="static/images/minimax-games-logo.png" 
+                alt="Mini[Max] Games"  style="height: 60px; width: auto;">
+        </div>
+        <div class="ttt-6">
+            <p>!</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>Created by Noah Tavis, this Flask-based web application is</p>
+            <p>inspired by the course material of Harvard's CS50 and CS50AI!</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>Each game is accompanied by its own bot, trained specifically to</p>
+            <p>tackle the unique logic of the game its tailored to.</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>In fact, the name of this web app is based on the popular MiniMax algorithm,</p>
+            <p> in which the computer looks at various possible future game</p>
+            <p>states and decides the best way forward. Both the Tic-Tac-Toe and Connect 4</p>
+            <p>AI's use MiniMax as their decision engines!</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>This combination of programs will serve as my submission for CS50's</p>
+            <p>final project. If learning more about computer programming sounds</p>
+            <p>interesting to you, I'd highly recommend checking them out at 
+                <a href="https://www.edx.org">Edx.</a></p>
+            <p>The course is free and it covers a wide range of programming basics, 
+                from C to SQL to Python.</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>Thank you for visiting!</p>
+            <p>I hope you find playing these simple games as interesting as I found making them.</p>
+        </div>
+    </div>
+    <div style="margin-bottom: 250px;"></div>
+
+{% endblock %}

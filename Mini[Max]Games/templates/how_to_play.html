@@ -1,0 +1,238 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    How To Play
+{% endblock %}
+
+{% block game %}
+
+    {% if not session.get("game") %}
+        <!-- Back button -->
+        <div class="game-bar">
+            <a href="/" class="game-bar-item">← Back</a>
+        </div>
+        <div class="ttt-row">
+            <div class="ttt-2">
+                <p>Access this menu during a game to see how its played!</p>
+            </div>
+        </div>
+    {% else %}
+        <!-- Back button -->
+        <div class="game-bar">
+            <a href="{{ url_for(game + '.' + game) }}" class="game-bar-item">← Back</a>
+        </div>
+
+        <div class="instructions">
+
+            <!-- How to play: [game] message -->
+            <p class="game-name">How to play: 
+            {% if game == "tictactoe" %}
+                Tic Tac Toe</p>
+            {% elif game == "minesweeper" %}
+                Minesweeper</p>
+            {% elif game == "nim" %}
+                Nim</p>
+            {% elif game == "connect4" %}
+                Connect 4</p>
+            {% endif %}
+
+            <!-- Instructions for each game -->
+
+            <!-- Tic tac toe -->
+            {% if game == "tictactoe" %}
+                <div class="ttt-row">
+                    <div class="ttt-1">
+                        <img src="/static/images/x.png" alt="X">
+                        <p>One player uses X</p>
+                    </div>
+                    <div class="ttt-1">
+                        <img src="/static/images/o.png" alt="O">
+                        <p>The other uses O</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Each player takes turns placing their symbol on the board.</p>
+                        <img src="/static/images/tictactoe-moves.png" 
+                            alt="tictactoe-board with player moves">
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Get three of your symbol in a row to win!</p>
+                        <img src="/static/images/tictactoe-win.png" 
+                            alt="tictactoe-board with a winner">
+                    </div>
+                </div>
+
+            <!-- Minesweeper -->
+            {% elif game == "minesweeper" %}
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Each cell either contains a mine or is safe.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-1">
+                        <img src="/static/images/safe.png" alt="Safe">
+                        <p>Safe</p>
+                    </div>
+                    <div class="ttt-1">
+                        <img src="/static/images/minesweeper.png" alt="Mine">
+                        <p>Mine</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>The number inside the cell indicates the number of 
+                            surrounding mines.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-3">
+                        <img src="/static/images/ms-cell-number.png" 
+                            alt="Safe cell marked 1, surrounded by unknown cells">
+                        <p>There is 1 mine somewhere among these 8 green cells.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Click on a cell to reveal it.</p>
+                        <p>Watch out for mines! If you click on one you lose.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Right click on a cell that you know is a mine to 
+                            flag it.</p>
+                        <img src="/static/images/flag.png" alt="Flag" 
+                            style="width: 200px; margin-left: 60px">
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Avoid all mines and reveal all safe cells to win!</p>
+                        <img src="/static/images/ms-complete.png" 
+                            alt="Complete board">
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>The "AI Move" button can help you. If there is a safe 
+                            move to play, it will do so.</p>
+                        <p>But beware - the button is not all-powerful!</p>
+                        <p>If there is no known safe move, it chooses one randomly.</p>
+                        <p>Good luck!</p>
+                    </div>
+                </div>
+
+            <!-- Nim -->
+            {% elif game == "nim" %}
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Players take turns removing objects from piles.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-1">
+                        <img src="/static/images/item.png" alt="Nim object" 
+                            style="height: 60px; width: auto">
+                        <p style="margin-top: 10px">This is an object</p>
+                    </div>
+                    <div class="ttt-1">
+                        <img src="/static/images/nim-pile.png" alt="Nim pile" 
+                            style="height: 60px; width: auto">
+                        <p style="margin-top: 10px">Each row is a pile</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>You can take any number of objects from any pile, 
+                            so long as all objects</p>
+                        <p>are from the same pile.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>You may not take objects from more than one pile.</p>
+                        <p>You must take at least one object every turn.</p>
+                    </div>
+                </div>
+                <div class="ttt-row" style="gap: 10rem;">
+                    <div class="ttt-4">
+                        <img src="/static/images/nim_valid_move_0.png" 
+                            alt="Valid move example">
+                    </div>
+                    <div class="ttt-4">
+                        <img src="/static/images/nim_valid_move_1.png" 
+                            alt="Valid move example">
+                    </div>
+                    <div class="ttt-4">
+                        <img src="/static/images/nim_valid_move_2.png" 
+                            alt="Valid move example">
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-4">
+                        <p>These moves are allowed.</p>
+                    </div>
+                </div>
+                <div class="ttt-row" style="gap: 10rem;">
+                    <div class="ttt-4">
+                        <img src="/static/images/nim_invalid_move_0.png" 
+                            alt="Invalid move example">
+                    </div>
+                    <div class="ttt-4">
+                        <img src="/static/images/nim_invalid_move_1.png" 
+                            alt="Invalid move example">
+                    </div>
+                    <div class="ttt-4">
+                        <img src="/static/images/nim_invalid_move_2.png" 
+                            alt="Invalid move example">
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-4">
+                        <p>These moves are not allowed.</p>
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-5">
+                        <img src="/static/images/nim_last_move.png" 
+                            alt="Last move example">
+                        <p>The person who takes the last object loses!</p>
+                    </div>
+                </div>
+
+            <!-- Connect 4 -->
+            {% elif game == "connect4" %}
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Players take turns dropping pieces into the board.</p>
+                    </div>
+                </div>
+                <div class="ttt-row" style="margin-top: 0px">
+                    <div class="ttt-2">
+                        <img src="/static/images/c4_move.png" 
+                            alt="Connect four move example">
+                    </div>
+                </div>
+                <div class="ttt-row">
+                    <div class="ttt-2">
+                        <p>Connect four of your pieces to win!</p>
+                    </div>
+                </div>
+                <div class="ttt-row" style="margin-top: 0px">
+                    <div class="ttt-2">
+                        <img src="/static/images/c4_win.png" 
+                            alt="Connect four win example">
+                    </div>
+                </div>
+            {% endif %}
+            
+            <div style="margin-bottom: 250px;"></div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

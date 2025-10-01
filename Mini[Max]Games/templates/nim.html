@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Nim
+{% endblock %}
+
+{% block game %}
+
+    <!-- Back and how to play buttons -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">
+            ← Back
+        </a>
+
+        <a href="/how_to_play" class="game-bar-item">
+            How to Play
+        </a>
+    </div>
+
+    <div class="nim-container">
+
+        {% if winner is not none %}
+
+            <!-- Winner message -->
+            <p class="nim-message">Game Over!</p>
+            <p class="nim-message">Winner: {{
+                "Player 1" if winner == 0 else (
+                     "Player 2" if not playing_ai else "AI"
+                    )
+                }}
+            </p>
+
+            <!-- Replay button -->
+            <form action="{{ url_for('nim.replay') }}" method="GET">
+                <button type="submit" class="game-card">
+                    <p style="font-size: 1.5rem; margin-top: 25px">Play again?</p>
+                </button>
+            </form>
+
+        <!-- Nim board -->
+        {% else %}
+            <p class="nim-message">Piles:</p>
+            <div id="nim-board">
+                {% for pile in piles %}
+                    <div class="pile-row" data-pile="{{ loop.index0 }}">
+                        <div class="pile" data-pile="{{ loop.index0 }}">
+                            {% for obj in range(pile) %}
+                                <img src="{{ url_for('static', filename='images/item.png') }}"
+                                    class="nim-object"
+                                    data-index="{{ obj }}"
+                                    data-selected="false">
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            {% if not playing_ai or player == 0 %}
+
+                <!-- Make move button -->
+                <form method="post" id="move-form" style="margin-top: 20px;">
+                    <input type="hidden" name="pile" id="pile-input">
+                    <input type="hidden" name="count" id="count-input">
+                    <button type="submit" class="game-card">
+                        <p style="font-size: 1.2rem">Make Move</p>
+                    </button>
+                </form>
+
+                <!-- Player turn message -->
+                <p class="nim-message" style="margin-top: 12px;">
+                    {{ "Player 1's turn" if player == 0 else "Player 2's turn" }}
+                </p>
+
+            {% else %}
+                <p class="nim-message">AI is thinking...</p>
+            {% endif %}
+        {% endif %}
+
+        <!-- In case user forces bad move -->
+        {% if error %}
+            <div class="alert alert-danger mt-2">{{ error }}</div>
+        {% endif %}
+
+        <script>
+            // Single pile, multiple object selection logic
+            const piles = document.querySelectorAll('.pile');
+            let selectedPile = null;
+
+            // Whenever an object is clicked,
+            piles.forEach(pile => {
+                pile.addEventListener('click', e => {
+                    if (e.target.tagName.toLowerCase() !== 'img') return;
+
+                    // Check if its in the current selected pile,
+                    const clickedPile = pile.dataset.pile;
+                    if (selectedPile === null || selectedPile === clickedPile) {
+                        selectedPile = clickedPile;
+
+                    // If its not, reset previous selections
+                    } else {
+                        document.querySelectorAll('.nim-object.selected').forEach(el => el.classList.remove('selected'));
+                        selectedPile = clickedPile;
+                    }
+
+                    // Toggle selected state
+                    e.target.classList.toggle('selected');
+                });
+            });
+
+            // Move submission logic
+            const form = document.getElementById('move-form');
+            form.addEventListener('submit', function(e) {
+                const selected = document.querySelectorAll(`.pile[data-pile="${selectedPile}"] .nim-object.selected`);
+                if (selected.length === 0) {
+                    e.preventDefault();
+                    alert("Select at least one object from a single pile.");
+                    return;
+                }
+                document.getElementById('pile-input').value = selectedPile;
+                document.getElementById('count-input').value = selected.length;
+            });
+        </script>
+    </div>
+
+{% endblock %}

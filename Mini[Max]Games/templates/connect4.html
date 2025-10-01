@@ -1,0 +1,138 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Connect 4
+{% endblock %}
+
+{% block game %}
+    <!-- Back and how to play buttons -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">← Back</a>
+        <a href="/how_to_play" class="game-bar-item">How to Play</a>
+    </div>
+
+    <div class="connect4-container">
+
+        <!-- Board display -->
+        <div class="board-wrapper">
+            <div class="connect4-board" id="connect4-board">
+                {% for row in board %}
+                    {% set row_index = loop.index0 %}
+                    {% for cell in row %}
+                        {% set col_index = loop.index0 %}
+                        <div class="c4-cell 
+                            {% if cell == 'X' %}c4-x
+                            {% elif cell == 'O' %}c4-o
+                            {% else %}c4-empty{% endif %}"
+                            data-col="{{ col_index }}">
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+
+
+
+        {% if game_over %}
+
+            <!-- Winner message -->
+            <p class="nim-message">Game Over!</p>
+
+            {% if tie %}
+
+                <p class="nim-message">It's a tie!</p>
+            
+            {% elif winner is not none %}
+
+                <p class="nim-message">Winner: {{
+                    "Player 1" if winner == "X" else (
+                        "Player 2" if not playing_ai else "AI"
+                    )
+                }}</p>
+
+            {% endif %}
+
+            <!-- Replay button -->
+            <div class="connect4-message" style="margin-top: 0px;">
+                <form action="{{ url_for('connect4.replay') }}" method="GET">
+                    <button type="submit" class="game-card">
+                        <p style="font-size: 1.5rem; text-align: center; align-items: center;">
+                            Play again?</p>
+                    </button>
+                </form>
+            </div>
+
+        {% else %}
+
+            <!-- Player turn message -->
+            {% if not playing_ai or player|string == playing_as %}
+                <p class="connect4-message">
+                    {{ "Player 1's turn" if player == "X" else "Player 2's turn" }}
+                </p>
+            {% else %}
+                <p class="connect4-message">AI is thinking...</p>
+            {% endif %}
+        
+        {% endif %}
+
+        <!-- In case user forces bad input -->
+        {% if error %}
+            <div class="alert alert-danger mt-2">{{ error }}</div>
+        {% endif %}
+
+    </div>
+
+    {% if winner is none %}
+
+        <!-- Column button logic -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const board = document.getElementById('connect4-board');
+
+                // Highlight all cells in the column when hovered over
+                board.addEventListener('mouseover', (event) => {
+                    const col = event.target.getAttribute('data-col');
+                    if (col !== null) {
+                        document.querySelectorAll(`.c4-cell[data-col='${col}']`).forEach(cell => {
+                            if (cell.classList.contains("c4-empty")) {
+                                cell.classList.add('c4-highlight');
+                            }
+                        });
+                    }
+                });
+
+                
+                // Remove highlight from all cells 
+                board.addEventListener('mouseout', (event) => {
+                    document.querySelectorAll('.c4-highlight').forEach(cell => {
+                        cell.classList.remove('c4-highlight');
+                    });
+                });
+                
+                // Move submission logic
+                board.addEventListener('click', (event) => {
+                    const col = event.target.getAttribute('data-col');
+                    if (col !== null) {
+                        // Create a form
+                        const form = document.createElement('form');
+                        form.method = 'POST';
+
+                        // Create input value for form
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = 'col';
+                        input.value = col;
+
+                        // Submit created form
+                        form.appendChild(input);
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                });
+            });
+        </script>
+
+    {% endif %}
+
+
+{% endblock %}

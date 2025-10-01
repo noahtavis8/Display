@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Resources
+{% endblock %}
+
+{% block resources %}
+    <!-- Back button -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">← Back</a>
+    </div>
+
+    <!-- Resources page -->
+    <div class="ttt-row" style="margin-top: 20px;">
+        <div class="ttt-2">
+            <p>As we can only see further by standing on the shoulders of giants,</p>
+            <p>this project would not be possible without the use of various outside resources.</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>Most of the images used here were produced by:</p>
+            <a href="https://www.flaticon.com/">
+                <img src="/static/images/flaticon.png" 
+                    alt="Flaticon" style="width: 150px; height: auto; margin-top: 80px;">
+            </a>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p><a href="https://flask.palletsprojects.com/en/stable/">Flask</a> 
+                was instrumental to this project; the skills needed to utilize it's power</p>
+            <p>were handed to me through CS50.</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p><a href="https://getbootstrap.com/">Bootstrap's</a> 
+                styling tools were also used for the nav bar at the top of every page.</p>
+        </div>
+    </div>
+    <div class="ttt-row">
+        <div class="ttt-2">
+            <p>Finally, I learned the algorithms these bots use by taking CS50AI.</p>
+            <p>If AI, machine learning, or even basic logic is something</p>
+            <p>you find interesting or cool, once again I cannot recommend these courses enough.</p>
+        </div>
+    </div>
+    <div style="margin-bottom: 250px;"></div>
+{% endblock %}

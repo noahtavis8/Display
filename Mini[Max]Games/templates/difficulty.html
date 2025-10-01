@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Difficulty?
+{% endblock %}
+
+{% block main %}
+    <!-- Ask the user what difficulty they would like to play on -->
+    <main class="game-grid">
+        <form action="{{ url_for('difficulty.difficulty') }}" method="POST">
+            <input type="hidden" name="difficulty" value="easy"> 
+            <button type="submit" class="game-card">
+                <img src="/static/images/easy.png" alt="Easy">
+                <p>Easy</p>
+            </button>
+        </form>
+
+        <form action="{{ url_for('difficulty.difficulty') }}" method="POST">
+            <input type="hidden" name="difficulty" value="medium"> 
+            <button type="submit" class="game-card">
+                <img src="/static/images/medium.png" alt="Medium">
+                <p>Medium</p>
+            </button>
+        </form>
+
+        <form action="{{ url_for('difficulty.difficulty') }}" method="POST">
+            <input type="hidden" name="difficulty" value="hard"> 
+            <button type="submit" class="game-card">
+                <img src="/static/images/hard.png" alt="Hard">
+                <p>Hard</p>
+            </button>
+        </form>
+    </main>
+{% endblock %}

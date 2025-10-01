@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Tic Tac Toe
+{% endblock %}
+
+{% block game %}
+
+    <!-- Back and how to play buttons -->
+    <div class="game-bar">
+        <a href="/" class="game-bar-item">
+            ← Back
+        </a>
+
+        <a href="/how_to_play" class="game-bar-item">
+            How to Play
+        </a>
+    </div>
+
+    <!-- Tic tac toe board -->
+    <body>
+        <form method="post">
+            <input type="hidden" name="board" value="{{ board }}">
+            <div class="board-container">
+                {% for i in range(3) %}
+                    {% for j in range(3) %}
+                        {% if board[i][j] %}
+                            <div class="cell-button cell-{{ i }}-{{ j }} cell-{{ board[i][j]|lower }}">
+                                {{ board[i][j] }}
+                            </div>
+                        {% elif not game_over %}
+                            <button type="submit"
+                                    name="move"
+                                    value="{{ i }},{{ j }}"
+                                    class="cell-button cell-{{ i }}-{{ j }}">
+                            </button>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </form>
+        
+        <!-- Winner message -->
+        {% if game_over %}
+            <p style="text-align: center; font-size: 24px;">
+                {% if winner %}
+                    {{ winner }} wins!
+                {% else %}
+                    It's a tie!
+                {% endif %}
+            </p>
+
+        <!-- Play again button -->
+        <main class="game-grid">
+            <form action="{{ url_for('tictactoe.tictactoe') }}" method="GET">
+                <button type="submit" class="game-card">
+                    <p>Play again?</p>
+                </button>
+            </form>
+        </main>
+
+        <!-- Player turn message -->
+        {% else %}
+            <p style="text-align: center; font-size: 24px;">Its {{ player }}'s turn!</p>
+        {% endif %}
+    </body>
+    
+{% endblock %}

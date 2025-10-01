@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+    <!-- Game Grid -->
+    <main class="game-grid">
+        <a href="/tictactoe" class="game-card">
+            <img src="/static/images/tic-tac-toe.png" alt="Tic Tac Toe">
+            <p>Tic Tac Toe</p>
+        </a>
+        <a href="/minesweeper" class="game-card">
+            <img src="/static/images/minesweeper.png" alt="Minesweeper">
+            <p>Minesweeper</p>
+        </a>
+        <a href="/nim" class="game-card">
+            <img src="/static/images/nim.png" alt="Nim">
+            <p>Nim</p>
+        </a>
+        <a href="/connect4" class="game-card">
+            <img src="/static/images/connect-four.png" alt="Connect 4">
+            <p>Connect 4</p>
+        </a>
+    </main>
+
+    <!-- 
+    <a href="https://www.flaticon.com/free-icons/tic-tac-toe" title="tic tac toe icons">Tic tac toe icons created by Freepik - Flaticon</a>
+    -->
+
+{% endblock %}
