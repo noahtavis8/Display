@@ -1,30 +1,14 @@
-/*
- * This file is where you should implement your binary search tree.  It already
- * contains skeletons of the functions you need to implement (along with
- * documentation for each function).  Feel free to implement any additional
- * functions you might need.  Also, don't forget to include your name and
- * @oregonstate.edu email address below.
- *
- * Name: Noah Tavis
- * Email: tavisn@oregonstate.edu
- */
-
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "bst.h"
-
-// For boolean return type for helper functions
-#include <stdbool.h>
 
 /*
  * This structure represents a single node in a BST.  In addition to containing
  * pointers to its two child nodes (i.e. `left` and `right`), it contains two
  * fields representing the data stored at this node.  The `key` field is an
  * integer value that should be used as an identifier for the data in this
- * node.  Nodes in the BST should be ordered based on this `key` field.  The
- * `value` field stores data associated with the key.
- *
- * You should not modify this structure.
+ * node. 
  */
 struct bst_node {
   int key;
@@ -37,8 +21,6 @@ struct bst_node {
 /*
  * This structure represents an entire BST.  It specifically contains a
  * reference to the root node of the tree.
- *
- * You should not modify this structure.
  */
 struct bst {
   struct bst_node* root;
@@ -91,8 +73,8 @@ void bst_free_nodes(struct bst_node* node) {
 }
 
 /*
- * This function should free the memory associated with a BST.  While this
- * function should up all memory used in the BST itself, it should not free
+ * This function frees the memory associated with a BST.  While this
+ * function frees all memory used in the BST itself, it does not free
  * any memory allocated to the pointer values stored in the BST.  This is the
  * responsibility of the caller.
  *
@@ -121,7 +103,7 @@ int bst_count_nodes(struct bst_node* node) {
 }
 
 /*
- * This function should return the total number of elements stored in a given
+ * This function returns the total number of elements stored in a given
  * BST.
  *
  * Params:
@@ -136,10 +118,7 @@ int bst_size(struct bst* bst) {
 }
 
 /*
- * This function should insert a new key/value pair into the BST.  The key
- * should be used to order the key/value pair with respect to the other data
- * stored in the BST.  The value should be stored along with the key, once the
- * right location in the tree is found.
+ * This function inserts a new key/value pair into the BST.
  *
  * Params:
  *   bst - the BST into which a new key/value pair is to be inserted.  May not
@@ -195,9 +174,9 @@ void bst_insert(struct bst* bst, int key, void* value) {
 
 
 /*
- * This function should remove a key/value pair with a specified key from a
+ * This function removes a key/value pair with a specified key from a
  * given BST.  If multiple values with the same key exist in the tree, this
- * function should remove the first one it encounters (i.e. the one closest to
+ * function removes the first one it encounters (i.e. the one closest to
  * the root of the tree).
  *
  * Params:
@@ -296,11 +275,11 @@ void bst_remove(struct bst* bst, int key) {
 }
 
 /*
- * This function should return the value associated with a specified key in a
+ * This function returns the value associated with a specified key in a
  * given BST.  If multiple values with the same key exist in the tree, this
- * function should return the first one it encounters (i.e. the one closest to
+ * function returns the first one it encounters (i.e. the one closest to
  * the root of the tree).  If the BST does not contain the specified key, this
- * function should return NULL.
+ * function returns NULL.
  *
  * Params:
  *   bst - the BST from which a key/value pair is to be removed.  May not
@@ -375,7 +354,7 @@ int bst_longest_path(struct bst_node* node) {
 }
 
 /*
- * This function should return the height of a given BST, which is the maximum
+ * This function returns the height of a given BST, which is the maximum
  * depth of any node in the tree (i.e. the number of edges in the path from
  * the root to that node).  Note that the height of an empty tree is -1 by
  * convention.
@@ -437,8 +416,8 @@ int bst_node_path_sum(struct bst_node* node, int target) {
 }
 
 /*
- * This function should determine whether a specified value is a valid path
- * sum within a given BST.  In other words, this function should check whether
+ * This function determines whether a specified value is a valid path
+ * sum within a given BST.  In other words, this function will check whether
  * the given BST contains any path from the root to a leaf in which the keys
  * sum to the specified value.
  *
@@ -447,8 +426,8 @@ int bst_node_path_sum(struct bst_node* node, int target) {
  *   sum - the value to search for among the path sums of `bst`
  *
  * Return:
- *   Should return 1 if `bst` contains any path from the root to a leaf in
- *   which the keys add up to `sum`.  Should return 0 otherwise.
+ *   Returns 1 if `bst` contains any path from the root to a leaf in
+ *   which the keys add up to `sum`.  Returns 0 otherwise.
  */
 int bst_path_sum(struct bst* bst, int sum) {
   if (bst_is_null(bst)) {
@@ -484,22 +463,21 @@ int bst_node_range_sum(struct bst_node* node, int lower, int upper) {
 }
 
 /*
- * This function should compute a range sum in a given BST.  Specifically, it
- * should compute the sum of all keys in the BST between a given lower bound
- * and a given upper bound.  For full credit, you should not process any subtree
- * whose keys cannot be included in the range sum.
+ * This function computes a range sum in a given BST.  Specifically, it
+ * computes the sum of all keys in the BST between a given lower bound
+ * and a given upper bound. 
  *
  * Params:
  *   bst - the BST within which to compute a range sum
  *   lower - the lower bound of the range over which to compute a sum; this
- *     should be considered an *inclusive* bound; in other words a key that's
- *     equal to this bound should be included in the sum
+ *     is be considered an *inclusive* bound; in other words a key that's
+ *     equal to this bound is included in the sum
  *   upper - the upper bound of the range over which to compute a sum; this
- *     should be considered an *inclusive* bound; in other words a key that's
- *     equal to this bound should be included in the sum
+ *     is considered an *inclusive* bound; in other words a key that's
+ *     equal to this bound is included in the sum
  *
  * Return:
- *   Should return the sum of all keys in `bst` between `lower` and `upper`.
+ *   Returns the sum of all keys in `bst` between `lower` and `upper`.
  */
 int bst_range_sum(struct bst* bst, int lower, int upper) {
   if (bst_is_null(bst)) {

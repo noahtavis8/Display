@@ -1,11 +1,3 @@
-/*
- * This file contains the definition of the interface for the priority queue
- * you'll implement.  You can find descriptions of the priority queue functions,
- * including their parameters and their return values, in pq.c.
- *
- * You should not modify this file.
- */
-
 #ifndef __PQ_H
 #define __PQ_H
 

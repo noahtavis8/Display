@@ -1,10 +1,3 @@
-/*
- * This file contains the definition of the interface for the linked list
- * you'll implement.  You can find descriptions of the linked list functions,
- * including their parameters and their return values, in list.c. You should
- * not modify anything in this file.
- */
-
 #ifndef __LIST_H
 #define __LIST_H
 

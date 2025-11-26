@@ -1,10 +1,3 @@
-/*
- * This file contains the definition of the interface for the binary search
- * tree you'll implement.  You should not modify anything in this file.  You
- * can find descriptions of the binary search tree functions, including their
- * parameters and their return values, in bst.c.
- */
-
 #ifndef __BST_H
 #define __BST_H
 
@@ -14,8 +7,7 @@
 struct bst;
 
 /*
- * Basic binary search tree interface function prototypes.  Refer to bst.c for
- * documentation about each of these functions.
+ * Basic binary search tree interface function prototypes. 
  */
 struct bst* bst_create();
 void bst_free(struct bst* bst);
@@ -25,8 +17,7 @@ void bst_remove(struct bst* bst, int key);
 void* bst_get(struct bst* bst, int key);
 
 /*
- * Binary search tree "puzzle" function prototypes.  Refer to bst.c for
- * documentation about each of these functions.
+ * Binary search tree "puzzle" function prototypes. 
  */
 int bst_height(struct bst* bst);
 int bst_path_sum(struct bst* bst, int sum);

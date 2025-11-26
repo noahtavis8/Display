@@ -1,13 +1,3 @@
-/*
- * In this file, you will write the structures and functions needed to
- * implement a priority queue.  Feel free to implement any helper functions
- * you need in this file to implement a priority queue.  Make sure to add your
- * name and @oregonstate.edu email address below:
- *
- * Name: Noah Tavis
- * Email: tavisn@oregonstate.edu
- */
-
 #include <stdlib.h>
 
 #include "pq.h"
@@ -23,8 +13,7 @@ struct pq_node {
 };
 
 /*
- * This is the structure that represents a priority queue.  You must define
- * this struct to contain the data needed to implement a priority queue.
+ * This is the structure that represents a priority queue.
  */
 struct pq {
 	struct dynarray* heap;
@@ -32,7 +21,7 @@ struct pq {
 
 
 /*
- * This function should allocate and initialize an empty priority queue and
+ * This function allocates and initializes an empty priority queue and
  * return a pointer to it.
  */
 struct pq* pq_create() {
@@ -52,9 +41,8 @@ struct pq* pq_create() {
 
 
 /*
- * This function should free the memory allocated to a given priority queue.
- * Note that this function SHOULD NOT free the individual elements stored in
- * the priority queue.  That is the responsibility of the caller.
+ * This function frees the memory allocated to a given priority queue. It does not free
+ * any memory associated with the objects stored.
  *
  * Params:
  *   pq - the priority queue to be destroyed.  May not be NULL.
@@ -67,7 +55,7 @@ void pq_free(struct pq* pq) {
 
 
 /*
- * This function should return 1 if the specified priority queue is empty and
+ * This function returns 1 if the specified priority queue is empty and
  * 0 otherwise.
  *
  * Params:
@@ -75,7 +63,7 @@ void pq_free(struct pq* pq) {
  *     NULL.
  *
  * Return:
- *   Should return 1 if pq is empty and 0 otherwise.
+ *   1 if pq is empty and 0 otherwise.
  */
 int pq_isempty(struct pq* pq) {
 	if (pq == NULL || pq->heap == NULL || dynarray_size(pq->heap) == 0) {
@@ -86,10 +74,10 @@ int pq_isempty(struct pq* pq) {
 
 
 /*
- * This function should insert a given element into a priority queue with a
+ * This function inserts a given element into a priority queue with a
  * specified priority value.  Note that in this implementation, LOWER priority
  * values are assigned to elements with HIGHER priority.  In other words, the
- * element in the priority queue with the LOWEST priority value should be the
+ * element in the priority queue with the LOWEST priority value will be the
  * FIRST one returned.
  *
  * Params:
@@ -97,10 +85,7 @@ int pq_isempty(struct pq* pq) {
  *     NULL.
  *   value - the value to be inserted into pq.
  *   priority - the priority value to be assigned to the newly-inserted
- *     element.  Note that in this implementation, LOWER priority values
- *     should correspond to elements with HIGHER priority.  In other words,
- *     the element in the priority queue with the LOWEST priority value should
- *     be the FIRST one returned.
+ *     element.
  */
 void pq_insert(struct pq* pq, void* value, int priority) {
 	if (pq == NULL || pq->heap == NULL) {
@@ -141,7 +126,7 @@ void pq_insert(struct pq* pq, void* value, int priority) {
 
 
 /*
- * This function should return the value of the first item in a priority
+ * This function returns the value of the first item in a priority
  * queue, i.e. the item with LOWEST priority value.
  *
  * Params:
@@ -149,7 +134,7 @@ void pq_insert(struct pq* pq, void* value, int priority) {
  *     empty.
  *
  * Return:
- *   Should return the value of the first item in pq, i.e. the item with
+ *   The value of the first item in pq, i.e. the item with
  *   LOWEST priority value.
  */
 void* pq_first(struct pq* pq) {
@@ -163,7 +148,7 @@ void* pq_first(struct pq* pq) {
 
 
 /*
- * This function should return the priority value of the first item in a
+ * This function returns the priority value of the first item in a
  * priority queue, i.e. the item with LOWEST priority value.
  *
  * Params:
@@ -171,7 +156,7 @@ void* pq_first(struct pq* pq) {
  *     NULL or empty.
  *
  * Return:
- *   Should return the priority value of the first item in pq, i.e. the item
+ *   The priority value of the first item in pq, i.e. the item
  *   with LOWEST priority value.
  */
 int pq_first_priority(struct pq* pq) {
@@ -250,7 +235,7 @@ void _adjust_heap(struct pq* pq, int max_idx, int pos) {
 }
 
 /*
- * This function should return the value of the first item in a priority
+ * This function returns the value of the first item in a priority
  * queue, i.e. the item with LOWEST priority value, and then remove that item
  * from the queue.
  *
@@ -259,7 +244,7 @@ void _adjust_heap(struct pq* pq, int max_idx, int pos) {
  *     empty.
  *
  * Return:
- *   Should return the value of the first item in pq, i.e. the item with
+ *   The value of the first item in pq, i.e. the item with
  *   LOWEST priority value.
  */
 void* pq_remove_first(struct pq* pq) {

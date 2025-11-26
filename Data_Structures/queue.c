@@ -1,28 +1,11 @@
-/*
- * This file is where you should implement your queue.  It already contains
- * skeletons of the functions you need to implement (along with documentation
- * for each function).  Feel free to implement any additional functions you
- * might need.  Also, don't forget to include your name and @oregonstate.edu
- * email address below.
- *
- * Name: Noah Tavis
- * Email: tavisn@oregonstate.edu
- */
-
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "queue.h"
 #include "dynarray.h"
 
-// For boolean return type for helper functions
-#include <stdbool.h>
-
 /*
- * This is the structure that will be used to represent a queue.  This
- * structure specifically contains a single field representing a dynamic array
- * that should be used as the underlying data storage for the queue.
- *
- * You should not modify this structure.
+ * This is the structure of the queue
  */
 struct queue {
   struct dynarray* array;
@@ -47,7 +30,7 @@ bool da_is_null(struct dynarray* da) {
 }
 
 /*
- * This function should allocate and initialize a new, empty queue and return
+ * This function allocates and initializes a new, empty queue and return
  * a pointer to it.
  */
 struct queue* queue_create() {
@@ -66,11 +49,8 @@ struct queue* queue_create() {
 }
 
 /*
- * This function should free the memory associated with a queue.  While this
- * function should up all memory used in the queue itself, it should not free
- * any memory allocated to the pointer values stored in the queue.  This is the
- * responsibility of the caller.
- *
+ * This function frees the memory associated with a queue.  Does not free any 
+ * memory associated with any objects stored within.
  * Params:
  *   queue - the queue to be destroyed.  May not be NULL.
  */
@@ -81,8 +61,8 @@ void queue_free(struct queue* queue) {
 }
 
 /*
- * This function should indicate whether a given queue is currently empty.
- * Specifically, it should return 1 if the specified queue is empty (i.e.
+ * This function indicates whether a given queue is currently empty.
+ * Specifically, it returns 1 if the specified queue is empty (i.e.
  * contains no elements) and 0 otherwise.
  *
  * Params:
@@ -97,9 +77,8 @@ int queue_isempty(struct queue* queue) {
 }
 
 /*
- * This function should enqueue a new value into a given queue.  The value to
- * be enqueued is specified as a void pointer.  This function must have O(1)
- * average runtime complexity.
+ * This function enqueues a new value into a given queue.  The value to
+ * be enqueued is specified as a void pointer. 
  *
  * Params:
  *   queue - the queue into which a value is to be enqueued.  May not be NULL.
@@ -115,9 +94,8 @@ void queue_enqueue(struct queue* queue, void* val) {
 }
 
 /*
- * This function should return the value stored at the front of a given queue
- * *without* removing that value.  This function must have O(1) average runtime
- * complexity.
+ * This function returns the value stored at the front of a given queue
+ * *without* removing that value. 
  *
  * Params:
  *   queue - the queue from which to query the front value.  May not be NULL.
@@ -135,14 +113,14 @@ void* queue_front(struct queue* queue) {
 }
 
 /*
- * This function should dequeue a value from a given queue and return the
- * dequeued value.  This function must have O(1) average runtime complexity.
+ * This function dequeues a value from a given queue and return the
+ * dequeued value. 
  *
  * Params:
  *   queue - the queue from which a value is to be dequeued.  May not be NULL.
  *
  * Return:
- *   This function should return the value that was dequeued.
+ *   The value that was dequeued.
  */
 void* queue_dequeue(struct queue* queue) {
 	if (queue_is_null(queue) || da_is_null(queue->array)) {

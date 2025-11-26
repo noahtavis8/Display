@@ -1,10 +1,3 @@
-/*
- * This file contains the definition of the interface for the dynamic array
- * you'll implement.  You can find descriptions of the dynamic array functions,
- * including their parameters and their return values, in dynarray.c. You
- * should not modify anything in this file.
- */
-
 #ifndef __DYNARRAY_H
 #define __DYNARRAY_H
 
