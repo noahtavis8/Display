@@ -36,7 +36,7 @@ Mini[Max]Games is a Python & Flask based web application that allows the user to
 
 This served as my final project for Harvard's CS50. It also uses a lot of skills built from Harvard's CS50AI. 
 
-This was a very large production that taught me a lot about the basics of web development. Using the Python library Flask, I could pair the backend game logic in Python with the frontend HTML, JS and CSS. 
+This was a very large production that taught me a lot about the basics of program development. Using the Python library Flask, I could pair the backend game logic in Python with the frontend HTML, JS and CSS. 
 
 Beyond the nature of developing web applications, this project expands into introductory machine learning. Hence the name, it uses the MiniMax algorithm as its engine for Tic-Tac-Toe and Connect 4, and two other machine learning algorithms more specific to their respective games. CS50AI taught me a lot about the basics of machine learning and artificial intelligence. 
 
