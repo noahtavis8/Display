@@ -115,7 +115,7 @@ void* stack_top(struct stack* stack) {
  *   stack - the stack from which a value is to be popped.  May not be NULL.
  *
  * Return:
- *   This function should return the value that was popped.
+ *   This function returns the value that was popped.
  */
 void* stack_pop(struct stack* stack) {
 	if (stack_is_null(stack) || list_is_null(stack->list)) {
