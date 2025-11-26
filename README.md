@@ -14,6 +14,38 @@ This was an assignment from Whatcom Community College's Intro to Computer Scienc
 
 It taught me basic tree structure, as well as the basics of OOP with Java's class system. 
 
+## Data Structures
+
+Similar to the Binary Tree directory, the data structures directory contains implimentations of various different data structures all built from scratch in C.
+
+These were all assignments from Oregon State's Data Structures. 
+
+Each of the below gave me practice building and understanding the fundamentals of various abstract data types. All of them are for use with C void pointers, making them available for any type of use with any type of object in C.
+
+### dynarray.c
+
+This is an implimentation of a dynamic array.
+
+### list.c
+
+This is an implimentation of a linked list.
+
+### queue.c
+
+This is an implimentation of a queue using a dynamic array.
+
+### stack.c
+
+This is an implimentation of a stack using a linked list.
+
+### bst.c
+
+This is an implimentation of a binary search tree.
+
+### pq.c
+
+This is an implimentation of a priority queue using a min heap that uses a dynamic array as its underlying structure.
+
 ## Hunt The Wumpus
 
 Hunt The Wumpus is a simple CLI based game built in C++. 
