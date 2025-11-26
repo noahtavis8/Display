@@ -164,7 +164,7 @@ void dynarray_remove(struct dynarray* da, int idx){
  *
  * Params:
  * da - the dynamic array from which to get a value.  May not be NULL.
- * idx - the index of the element whose value should be returned.  The value
+ * idx - the index of the element whose value will be returned.  The value
  *     of `idx` must be between 0 (inclusive) and n (exclusive), where n is the
  *     number of elements stored in the array.
  */
@@ -181,7 +181,7 @@ void* dynarray_get(struct dynarray* da, int idx){
  *
  * Params:
  *   da - the dynamic array in which to set a value.  May not be NULL.
- *   idx - the index of the element whose value should be updated.  The value
+ *   idx - the index of the element whose value will be updated.  The value
  *     of `idx` must be between 0 (inclusive) and n (exclusive), where n is the
  *     number of elements stored in the array.
  *   val - the new value to be set.  Note that this parameter has type void*,

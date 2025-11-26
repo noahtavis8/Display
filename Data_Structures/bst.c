@@ -45,7 +45,7 @@ bool bst_node_is_null(struct bst_node* bst_node) {
 }
 
 /*
- * This function should allocate and initialize a new, empty, BST and return
+ * This function allocates and initializes a new, empty, BST and return
  * a pointer to it.
  */
 struct bst* bst_create() {
@@ -123,9 +123,9 @@ int bst_size(struct bst* bst) {
  * Params:
  *   bst - the BST into which a new key/value pair is to be inserted.  May not
  *     be NULL.
- *   key - an integer value that should be used to order the key/value pair
+ *   key - an integer value that is used to order the key/value pair
  *     being inserted with respect to the other data in the BST.
- *   value - the value being inserted into the BST.  This should be stored in
+ *   value - the value being inserted into the BST.  This will be stored in
  *     the BST alongside the key.  Note that this parameter has type void*,
  *     which means that a pointer of any type can be passed.
  */
@@ -287,7 +287,7 @@ void bst_remove(struct bst* bst, int key) {
  *   key - the key of the key/value pair whose value is to be returned.
  *
  * Return:
- *   Should return the value associated with the key `key` in `bst` or NULL,
+ *   Returns the value associated with the key `key` in `bst` or NULL,
  *   if the key `key` was not found in `bst`.
  */
 void* bst_get(struct bst* bst, int key) {
@@ -363,7 +363,7 @@ int bst_longest_path(struct bst_node* node) {
  *   bst - the BST whose height is to be computed
  *
  * Return:
- *   Should return the height of bst.
+ *   Returns the height of bst.
  */
 int bst_height(struct bst* bst) {
   struct bst_node* root = bst->root;

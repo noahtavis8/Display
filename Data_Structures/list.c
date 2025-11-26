@@ -283,7 +283,7 @@ int list_position(struct list* list, void* val, int (*cmp)(void* a, void* b))
  *
  * Params:
  * list - the linked list to be reversed.  May not be NULL.  When this
- *     function returns this should contain the reversed list.
+ *     function returns it will contain the reversed list.
  */
 void list_reverse(struct list* list)
 {
